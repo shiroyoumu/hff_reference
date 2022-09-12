@@ -1454,5 +1454,5 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
 常量：g：重力加速度，数值：9.81 [向量：(0, -9.81, 0)]<br>
 Lerp(a, b, value)计算方法：out = a + (b - a) × value，0 ≤ value ≤ 1<br>
 InverseLerp(a, b, value)计算方法：out = (value – a) ÷ (b - a) ，a ≤ value ≤ b<br>
-F~T线性对应到0~1即为InverseLerp(F, T, value)<br>
-F~T线性对应到0~1即为InverseLerp(F, T, value)<br>
+F\~T线性对应到0\~1即为InverseLerp(F, T, value)<br>
+F\~T线性对应到0\~1即为InverseLerp(F, T, value)<br>
