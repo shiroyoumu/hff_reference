@@ -557,193 +557,240 @@ Output 3输出：output value 3</td>
     </tr>
     <tr>
         <td>85</td>
-        <td></td>
-        <td></td>
+        <td>Angular Impulse</td>
+        <td>角动量（直译）。<br>
+当rigidbody的角速度大于angular velocity threshold时，勾选其刚体is kinematic属性（角速度过大停止移动）。</td>
     </tr>
     <tr>
         <td>86</td>
-        <td></td>
-        <td></td>
+        <td>Angular Joint</td>
+        <td>旋转关节。<br>
+为body设置一个只能旋转的关节。勾选Use Limits，则物体只能在[Min Value, Max Value]区间中自由旋转；Max Speed为最大自动旋转速度；Max Acceleration为最大加速度；勾选Use Spring时，Max Force为电机的驱动力，当该力过小时，可能需要更长时间来达到Max Speed；Spring为该物体回弹至Min Value状态的力，Damper用来限制回弹速度（越大越慢）；Anchor为该物体所连接的物体，必须具有刚体；Axis设定关节的旋转轴，该物体必须是Angular Joint附加物体的子物体，并取其X轴方向作为轴向，不填则为自身X轴方向。勾选Enable Collision则body与anchor之间会发生碰撞，否则不会。（未说明参数无需修改）</td>
     </tr>
     <tr>
         <td>87</td>
-        <td></td>
-        <td></td>
+        <td>Angular Servo</td>
+        <td>（用Servo Motor代替）</td>
     </tr>
     <tr>
         <td>88</td>
-        <td></td>
-        <td></td>
+        <td>Break On Displacement</td>
+        <td>出界信号。<br>
+当物体当前位置与物体起始位置的距离大于Break Displacement时，broken输出1（一次性，无法复位）。</td>
     </tr>
     <tr>
         <td>89</td>
-        <td></td>
-        <td></td>
+        <td>Break On Impact</td>
+        <td>碰撞断裂。<br>
+当Joint To Break所附加物体受到碰撞，且碰撞力度大于Treshold时，Joint To Break将断裂。</td>
     </tr>
     <tr>
         <td>90</td>
-        <td></td>
-        <td></td>
+        <td>Button</td>
+        <td>按钮。（建议使用预制件）<br>
+Button Speed按钮按下速度（越小越慢）；Activation Mode激活模式：Physics物理：只有被完全按下时才会输出信号；Torch触摸：当手触摸时就会输出信号。Button Action按钮行为：Press：信号输出后会始终保持，只有当reset有效时才会复位；Hold：激活时输出，不激活不输出；Toggle：目测和Hold一样；（True When Pressed没用）；勾选Usebuttonaction时Button Action选项才有效。</td>
     </tr>
     <tr>
         <td>91</td>
-        <td></td>
-        <td></td>
+        <td>Chargeable Battery<br><font color="1F90FF">电力组件</font></td>
+        <td>充电电池。<br>
+plus、minus为正负极插座；voltage为初始电压；max voltage为充电的最大电压；CPS为每0.5秒充电的电压增量。</td>
     </tr>
     <tr>
         <td>92</td>
-        <td></td>
-        <td></td>
+        <td>Change Colour</td>
+        <td>材质变色。<br>
+事件调用ChangeColourMat()函数可将MTC材质的颜色替换成new color。调用Reset()函数，颜色将换回初始值。</td>
     </tr>
     <tr>
         <td>93</td>
-        <td></td>
-        <td></td>
+        <td>Charger<br><font color="1F90FF">电力组件</font></td>
+        <td>充电器（电源）。<br>
+voltage为电源电压；max I为该电源能提供的最大电流；ampers输出当前电流值；charging表示正在给电池充电（做电源时将始终输出1）；充电结束charged输出1。</td>
     </tr>
     <tr>
         <td>94</td>
-        <td></td>
-        <td></td>
+        <td>Checkpoint</td>
+        <td>检查点。<br>
+添加一个保存点，number不重复即可，但当激活某一检查点时，任何小于其number的检查点将会失效。勾选tight spawn，玩家出生位置将会相对紧凑。点击Set as debug spawn point，会将次检查点设置成玩家第一次出生位置（游戏中也会生效）。</td>
     </tr>
     <tr>
         <td>95</td>
-        <td></td>
-        <td></td>
+        <td>Collision Audio Sensor</td>
+        <td>碰撞发声器。<br>
+此脚本所附加的物体发生碰撞时，将在碰撞点发出声音，声音与该物体物理材质有关。</td>
     </tr>
     <tr>
         <td>96</td>
-        <td></td>
-        <td></td>
+        <td>Constant Force At Point</td>
+        <td>添加常力。<br>
+在此脚本所附加的物体中心位置施加一个大小方向为Force的力。</td>
     </tr>
     <tr>
         <td>97</td>
-        <td></td>
-        <td></td>
+        <td>Contact Signal</td>
+        <td>接触传感器。<br>
+当此脚本所附加的物体与contact objects列表中任何一个物体发生接触时，value输出1,；勾选One Shot On则接触后value始终保持1（不可复位）。</td>
     </tr>
     <tr>
         <td>98</td>
-        <td></td>
-        <td></td>
+        <td>Control From Angle<br><font color="red">IReset接口</font></td>
+        <td>角度→信号。<br>
+（以下数据只在勾选Calculate Angle Correctly时有效）<br>
+以target的axis轴面向自己为准，顺时针旋转target，输出数值减小，逆时针增大。<br>
+勾选Allow Negative时：（物体初始角度记作A）<br>
+则(A + Range Rotations × 360)~( A - Range Rotations × 360)对应到输出值的-1~1（不勾选为0~1）。<br>
+勾选Clamp Full Rotation，则当角度超出上述区间范围时，将保持最大（小）输出。*注：则当角度超出上述区间范围时，A会向超出方向跟进，跟进大小为超出大小（如：角度向逆时针方向超出30度，则下次计算时A=A-30）。<br>
+勾选RTZOR，则RESET时将输出归0。当RESET时，恢复该物体到初始角度。</td>
     </tr>
     <tr>
         <td>99</td>
-        <td></td>
-        <td></td>
+        <td>Conveyor</td>
+        <td>传送带。<br>
+当input有信号时，传送带开始运行。forward、right为传送带带子的朝向；item prefab为履带片模型；segment count为履带片总数；length为传送带总长度；radius为转角半径；speed为传送带运行速度。</td>
     </tr>
     <tr>
         <td>100</td>
-        <td></td>
-        <td></td>
+        <td>Deliver Checkpoint</td>
+        <td>刚体检查点。<br>
+当Required Bodies中的物体进入该脚本所附加物体的触发范围内，且数量达到Required Count时，该检查点激活。</td>
     </tr>
     <tr>
         <td>101</td>
-        <td></td>
-        <td></td>
+        <td>Displacement Sensor</td>
+        <td>位移传感器。<br>
+输出：物体当前位置到relative to 位置的距离。relative to留空则为物体起始位置。</td>
     </tr>
     <tr>
         <td>102</td>
-        <td></td>
-        <td></td>
+        <td>Fall Trigger</td>
+        <td>死亡点。<br>
+玩家触碰后死亡。</td>
     </tr>
     <tr>
         <td>103</td>
-        <td></td>
-        <td></td>
+        <td>Fantastic Debug Ray<br><font color="FFD701">仅编辑器</font></td>
+        <td>贼棒的调试射线（直译）。<br>
+绘制一条线段，以该脚本所附加的物体中心为起点，length为长度，颜色为color；若勾选local则延物体的Z轴方向，否则延世界的Z轴方向。</td>
     </tr>
     <tr>
         <td>104</td>
-        <td></td>
-        <td></td>
+        <td>Fantastic Mass Calculator</td>
+        <td>贼棒的质量计算器。<br>
+为物体设置质量初值。该质量与物体体积有关。<br>
+质量：Material系数 ÷ 100 × (Scale.X × Scale.Y × Scale.Z)<br>
+Material系数为material条目后边的那个数字，Custom的系数为Custom Density。</td>
     </tr>
     <tr>
         <td>105</td>
-        <td></td>
-        <td></td>
+        <td>Fantastic Wind</td>
+        <td>贼棒的风。<br>
+为物体模拟吹风的效果。blown objects为被吹物体；物体们每隔frame skip帧（一帧FDT秒），有percent chance%的几率受到一个大小在min force到max force范围内，方向为direction的力。</td>
     </tr>
     <tr>
         <td>106</td>
-        <td></td>
-        <td></td>
+        <td>Fire Correct Velocity</td>
+        <td>按速度发射物体。<br>
+在事件中调用Fire()函数，该脚本所附加物体将沿Z轴正方向，初速度为speed被发射出去。</td>
     </tr>
     <tr>
         <td>107</td>
-        <td></td>
-        <td></td>
+        <td>Flammable<br><font color="FF8C00">热力组件</font></td>
+        <td>可燃物（被加热物）。<br>
+当该脚本所附加物体进入Flammable Script Heat Source 1物体的collider触发范围时，该物体将被点燃。output输出当前heat值；ignition point为该可燃物燃点，heat大于此值时视为被点燃（当heat再次低于ignition point时，点燃状态也不会改变）；maximum heat为能被加热到的最大热值；heat up speed为该可燃物升温速度。</td>
     </tr>
     <tr>
         <td>108</td>
-        <td></td>
-        <td></td>
+        <td>Flammable Script Boiler Collider<br><font color="FF8C00">热力组件</font></td>
+        <td>锅炉触发区。<br>
+当一个物体是触发器并附加该脚本时，那么该脚本的触发区域为Flammable Source Boiler 1的热量计数区。</td>
     </tr>
     <tr>
         <td>109</td>
-        <td></td>
-        <td></td>
+        <td>Flammable Script Heat Colour Change 1<br><font color="FF8C00">热力组件</font></td>
+        <td>颜色随温度变化。<br>
+cold color为物体完全冷却时颜色；hot color为物体完全加热时的颜色；emit color、emit intensity为物体完全加热时的自发光颜色和自发光亮度；HUT和CDT为完全加热所需时间和完全冷却所需时间。</td>
     </tr>
     <tr>
         <td>110</td>
-        <td></td>
-        <td></td>
+        <td>Flammable Script Heat Source 1<br><font color="FF8C00">热力组件</font></td>
+        <td>热源（加热物）。<br>
+勾选IAH则始终发热；is hot显示当前热源是否发热；在不勾选IAH的情况下，可通过调用Ignite()和Extinguish()来控制其点燃和熄灭。</td>
     </tr>
     <tr>
         <td>111</td>
-        <td></td>
-        <td></td>
+        <td>Flammable Source Boiler 1<br><font color="FF8C00">热力组件</font></td>
+        <td>锅炉。<br>
+热量计数器。output输出计数区中点燃的Flammable物体个数 ÷ capacity；flame sound为点燃时的声音，fire volume为音量。</td>
     </tr>
     <tr>
         <td>112</td>
-        <td></td>
-        <td></td>
+        <td>Floating Mesh</td>
+        <td>漂浮物。<br>
+让物体能够漂在水面上。hull为物体与水接触的Collider；mesh为物体的Mesh（不能拖mesh filter，只能在文件中选）；sensor为Water Sensor脚本（漂浮物需要附加该脚本）；density为漂浮物密度（密度越大，水面就越近似于地面）；PL、PS、SL、SS分别为浮力一次项系数、浮力二次项系数、表面张力一次项系数和表面张力二次项系数（类似的计算公式见Water Motor）；falloff power为漂浮晃动速度的衰减力度。</td>
     </tr>
     <tr>
         <td>113</td>
-        <td></td>
-        <td></td>
+        <td>Foldable Solar Panel</td>
+        <td>折叠太阳能板。<br>
+把该脚本所附加物体的Light Consume输出值记作L，left的Z轴方向向量记作VL，right的Z轴方向向量记作VR，该脚本所附加物体的Z轴方向向量记作VB，则：<br>
+输出：(Dot(VL, VB) + Dot(VR, VB)) × L<br>
+（Dot(A, B)含义：如果AB夹角为锐角，等于0；如果AB夹角为钝角，等于0.5）</td>
     </tr>
     <tr>
         <td>114</td>
-        <td></td>
-        <td></td>
+        <td>Follow Waypoints</td>
+        <td>路径点移动。<br>
+当power > 0时，该脚本所附加物体将以speed ×input的速度朝着waypoints中的各个位置移动；当移动到最后一个点时，finished也不会输出1（官方忘了写这个代码）；勾选loop，物体会在waypoints中循环移动；cur point为当前朝向点，不修改默认从Element 0开始运行，设置几就从几开始移动。</td>
     </tr>
     <tr>
         <td>115</td>
-        <td></td>
-        <td></td>
+        <td>Gap Joint</td>
+        <td>双扇门关节。<br>
+同时控制两关节。Joint A、B只需设置物体和方向，其余参数将由Gap Joint的参数平分给定。</td>
     </tr>
     <tr>
         <td>116</td>
-        <td></td>
-        <td></td>
+        <td>Get Voltage<br><font color="1F90FF">电力组件</font></td>
+        <td>获取电压值。<br>
+（与Voltage To Signal一样）</td>
     </tr>
     <tr>
         <td>117</td>
-        <td></td>
-        <td></td>
+        <td>Grab Sensor</td>
+        <td>抓握传感器。<br>
+当该脚本所附加物体，能被抓握且被抓握时，输出1；否则输出0。</td>
     </tr>
     <tr>
         <td>118</td>
-        <td></td>
-        <td></td>
+        <td>Heat To Signal<br><font color="FF8C00">热力组件</font></td>
+        <td>热量→信号。</td>
     </tr>
     <tr>
         <td>119</td>
-        <td></td>
-        <td></td>
+        <td>Ignore Collision</td>
+        <td>忽略碰撞。<br>
+忽略该脚本所附加物体与colliders to ignore物体之间的碰撞。勾选recursive，则该脚本所附加物体的子物体也将忽略碰撞，否则不忽略。</td>
     </tr>
     <tr>
         <td>120</td>
-        <td></td>
-        <td></td>
+        <td>Ignore Child Collision</td>
+        <td>忽略子物体碰撞。<br>
+忽略该脚本所附加物体与其所有子物体之间的碰撞。</td>
     </tr>
     <tr>
         <td>121</td>
-        <td></td>
-        <td></td>
+        <td>Item mixer<br><font color="red">IReset接口</font></td>
+        <td>物品混合器。<br>
+当收集齐一些物品，触发事件。items为待收集物品列表，其中item指定游戏物体，mix effect为添加该物品后对该物体的操作（Destroy混合后销毁、Destroy First添加后销毁、Retain保留），item added()为该物品添加后触发的事件；bad item added()为非待收集物品添加后执行的事件；当items中所有物品添加完成时all items输出1，此时input有信号时，在activation time秒后执行all items added()事件。RESET时，activation time、all items输出清零。</td>
     </tr>
     <tr>
         <td>122</td>
-        <td></td>
-        <td></td>
+        <td>Joint Sensor</td>
+        <td>关节传感器。<br>
+输出Joint Base子类关节的数值。（与Joint同物体才有效）<br>
+value：当前Joint数值，范围Min Value ~ Max Value。<br>
+value normalized：Min Value到Max Value线性对应到0~1后的数值，即InverseLerp(Min Value, Max Value, value)，范围0~1。若勾选signed out，则为InverseLerp(Min Value, Max Value, value) × 2 - 1，范围-1~1。</td>
     </tr>
     <tr>
         <td>123</td>
