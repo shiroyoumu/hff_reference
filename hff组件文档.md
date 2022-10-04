@@ -810,20 +810,30 @@ value normalized：Min Value到Max Value线性对应到0~1后的数值，即Inve
     </tr>
     <tr>
         <td>126</td>
+        <td>Lerp Pitch</td>
+        <td>信号控制音调（播放速度）<br>
+当input有信号时，Audio Source中的pitch将从from变化至to。<br>
+pitch数值 = Lerp(from, to, 2 ^ - (input ÷ 1200))。<br>
+例：from = -1200，to = 0。则input处于0~1范围内变化时，pitch会在0.5~1之间变化。<br>
+（其他组件要求：Audio Source）
+</td>
+    </tr>
+    <tr>
+        <td>127</td>
         <td>Lever</td>
         <td>拉杆。<br>
 将指定的关节joint或angular joint设为拉杆。from angle~to angle为拉杆的活动范围，其对应的output输出值为-1~1。当勾选discrete时，output只会输出-1和1，拉杆角度位于from angle和from dead angle之间时输出-1，反之输出1；位于from dead angle和to dead angle之间时输出0。勾选snap zero，拉杆则可以吸附至0角度。勾选snap positive，拉杆则可以吸附至to angle角度。勾选snap negative，拉杆则可以吸附至from angle角度。snap to可以为拉杆设置初始吸附位置，当snap to的值小于-0.75、大于-0.5小于0.5、大于0.75时，则会吸附至from angle角度、0角度、to angle角度（只有勾选对应吸附时才会生效）。angle显示当前拉杆角度。
 </td>
     </tr>
     <tr>
-        <td>127</td>
+        <td>128</td>
         <td>Light Consume</td>
         <td>光照传感器。<br>
 在勾选CIUS的情况下：<br>
 当物体0~20%暴露在光源下时，输出0；当物体20~50%暴露在光源下时，输出0.25；当物体50~80%暴露在光源下时，输出0.5；当物体80~100%暴露在光源下时，输出1。（未详细定量计算，仅供参考）（光源要有Sun脚本，物体要有Collider）</td>
     </tr>
     <tr>
-        <td>128</td>
+        <td>129</td>
         <td>Lightning Renderer</td>
         <td>闪电渲染器。<br>
 生成一道闪电。<br>
@@ -831,13 +841,13 @@ Line Renderer：materials设置闪电材质；取消勾选use world space，则�
 Lightning Renderer：points为闪电段数；step为每段长度；scale设置闪电在各个轴向上的振动幅度；RSMin到RSMax为闪电闪光时间的随机数范围（0~1之间）；DAS为闪电消失前的闪烁次数；勾选AEP则闪电的头尾固定，否则只固定头。</td>
     </tr>
     <tr>
-        <td>129</td>
+        <td>130</td>
         <td>Light Flicker</td>
         <td>灯光闪烁。<br>
 模拟灯光闪烁，使光源的intensity在min intensity ~ max intensity之间不停变化，变化方式为三个speed产生的正弦波叠加。</td>
     </tr>
     <tr>
-        <td>130</td>
+        <td>131</td>
         <td>Light Tweek Based On Range</td>
         <td>灯光根据玩家距离变化。<br>
 lights中的light根据玩家相对position 1，position 2的位置，亮度从intensity 1变化至intensity 2。<br>
@@ -847,66 +857,66 @@ lights中的light根据玩家相对position 1，position 2的位置，亮度从i
 ③当投影点位于position 2前方时，light的强度始终为intensity 2</td>
     </tr>
     <tr>
-        <td>131</td>
+        <td>132</td>
         <td>Linear Joint</td>
         <td>线性滑动关节。<br>
 为body设置一个只能直线滑动的关节。勾选Use Limits，则物体只能在[Min Value, Max Value]区间中自由移动；Max Speed为最大自动移动速度；Max Acceleration为最大加速度；勾选Use Spring时，Max Force为电机的驱动力，当该力过小时，可能需要更长时间来达到Max Speed；Spring为该物体回弹至Min Value状态的力，Damper用来限制回弹速度（越大越慢）；Anchor为该物体所连接的物体，必须具有刚体；Axis设定关节的移动轴，该物体必须是Linear Joint附加物体的子物体，并取其Z轴方向作为轴向，不填则为自身Z轴方向。勾选Enable Collision则body与anchor之间会发生碰撞，否则不会。</td>
     </tr>
     <tr>
-        <td>132</td>
+        <td>133</td>
         <td>Linear Servo</td>
         <td>（用Servo Motor或Linear Servo Joint代替）</td>
     </tr>
     <tr>
-        <td>133</td>
+        <td>134</td>
         <td>Linear Servo Joint</td>
         <td>带电机的线性关节。<br>
 body将在min value到max value之间移动，速度为max speed ×  power × input，加速度为max acceleration。initial value为body的初始位置；max force为电机的驱动力，当该力过小时，可能需要更长时间来达到max speed；reverse delay为反向运动前的切换时间。未勾选signed input，则以min value为起点，否则以(min value + max value) ÷ 2为起点，input小于0向min value移动，input大于0向max value移动。</td>
     </tr>
     <tr>
-        <td>134</td>
+        <td>135</td>
         <td>Lock Cursor Editor<br><font color="FFD701">仅编辑器</font></td>
         <td>锁定鼠标。<br>
 勾选lock cursor，在未打开Node Window面板运行时，鼠标将锁定至Game面板，按Esc解锁。</td>
     </tr>
     <tr>
-        <td>135</td>
+        <td>136</td>
         <td>Magnetic Body<br><font color="33CD33">磁力组件</font></td>
         <td>磁体。<br>
 定义此物体为磁体，磁力作用点为Magnetic Point所附加的物体。勾选TVS，则该磁体的磁性由input信号触发；勾选DOC，则该磁体磁性接触其他磁体时消失；勾选FIP，则该物体与BTF（也是磁体）接触TTF秒后，使用一个关节将其连接，不可分开；勾选DOF，则当此物体与BTF接触并固定后，消除该物体磁性。</td>
     </tr>
     <tr>
-        <td>136</td>
+        <td>137</td>
         <td>Magnetic Point<br><font color="33CD33">磁力组件</font></td>
         <td>磁力点。<br>
 设置磁体的物理属性。magnetism大于0，为N极（红色）；magnetism小于0，为S极（蓝色）；magnetism等于0，为“铁”（白色）；若想触发磁力，磁体还需要有一个带trigger选项的collider，只有当其他磁体进入该磁体range范围并且进入trigger时，磁力才会起作用（建议trigger与range同大小）；MPO为磁力作用点相对物体中心点的偏移位置；angle为该磁力的作用范围，以物体Z轴为轴，angle为顶角的圆锥形区域（曲底圆锥，圆锥与range球的交集区域。编辑器中只显示了两条线。），只有当磁体处于该范围内才会受到磁力作用。</td>
     </tr>
     <tr>
-        <td>137</td>
+        <td>138</td>
         <td>Mass Change On Grab</td>
         <td>抓握改变质量。<br>
 当rigid被抓握时，将其质量设置为：原质量 × MMOG。</td>
     </tr>
     <tr>
-        <td>138</td>
+        <td>139</td>
         <td>Melting Object<br><font color="red">IReset接口</font></td>
         <td>物体融化。<br>
 该物体受光照融化。融化速度为melting speed秒；该物体完全融化后，间隔respawn delay秒将会重生（如果重生启用）；如果light intensity有信号，将触发该物体融化。output输出已融化百分比。当RESET时，恢复物体初始大小和重量，output置0。</td>
     </tr>
     <tr>
-        <td>139</td>
+        <td>140</td>
         <td>Net Body</td>
         <td>网络物体同步。<br>
 同步多人游戏下该物体的Transform信息，以及物体重生。物体世界坐标Y值小于despawn height时，物体将会消失，此时，如果勾选respawn，则物体将会重生，重生高度为物体初始位置Y值 + respawn height，同时触发Respawn Event()事件；带有该脚本的物体进行网络同步时会受到一个范围限制（默认值500m），当该物体移动距离超出该限制时，物体位置将不会被同步（卡模），可通过修改PRO的值来调整。</td>
     </tr>
     <tr>
-        <td>140</td>
+        <td>141</td>
         <td>Net Identity</td>
         <td>网络id号。<br>
 保存运行自动去重。</td>
     </tr>
     <tr>
-        <td>141</td>
+        <td>142</td>
         <td>Net Scene</td>
         <td>网络场景。<br>
 将需要网络同步的物体分组。每个Net Scene可容纳1193B（9544b）网络数据，<br>
@@ -917,242 +927,242 @@ body将在min value到max value之间移动，速度为max speed ×  power × in
 （以上数据可能不准确，仅供参考）。超出可能导致多人联机异常。每个Level中默认自带一个（id为0），当Net Body和Net Signal过多时需要自行添加Net Scene，id不重复即可，同时，包含在子物体中的Net Body和Net Signal，其字节数只计算在子物体的Net Scene中，不重复计算于父物体Net Scene中（类似于节点图的隔离方式）。</td>
     </tr>
     <tr>
-        <td>142</td>
+        <td>143</td>
         <td>Node Comment</td>
         <td>节点图注释。<br>
 （中文可在组件上直接输入，节点图中无法输入中文）</td>
     </tr>
     <tr>
-        <td>143</td>
+        <td>144</td>
         <td>Node Graph</td>
         <td>节点图。<br>
 *注：节点图任何一个输入端名称不能与任何一个输出端名称相同，否则输出端无法接线。</td>
     </tr>
     <tr>
-        <td>144</td>
+        <td>145</td>
         <td>Node Migrate Signal</td>
         <td>信号转移。<br>
 将Signal Base类信号转换成节点信号。</td>
     </tr>
     <tr>
-        <td>145</td>
+        <td>146</td>
         <td>Node Script Wave Output 1</td>
         <td>波形输出。<br>
 curve value将按照AC波形输出信号值。若不勾选AO，则当output value有信号时curve value开始输出，否则不输出；若勾选AO，则始终输出波形，输入端output value将失效。</td>
     </tr>
     <tr>
-        <td>146</td>
+        <td>147</td>
         <td>Normalized Angular Velocity</td>
         <td>规范化角速度。<br>
 将该物体从0~max velocity的角速度线性对应到0~1上（超过max velocity将保持不变），并由value输出（由于精度只有0.01，可能输出值达不到1）。</td>
     </tr>
     <tr>
-        <td>147</td>
+        <td>148</td>
         <td>Normalized Linear Velocity</td>
         <td>规范化线速度。<br>
 将该物体从0~max velocity的线速度线性对应到0~1上（超过max velocity将保持不变），并由value输出（由于精度只有0.01，可能输出值达不到1）；勾选needs collision，则该物体与其他物体接触时才输出，否则为0。</td>
     </tr>
     <tr>
-        <td>148</td>
+        <td>149</td>
         <td>Optimisation Volume</td>
         <td>优化区域。<br>
 当玩家进入该脚本所附加物体的触发区域时， deactivate renderers列表中的物体的渲染器将会全部打开（包括子物体，exempt objects中的物体不受影响），否则关闭；deactivate lights列表中的物体的灯光组件将会全部打开（包括子物体），否则关闭。</td>
     </tr>
     <tr>
-        <td>149</td>
+        <td>150</td>
         <td>Other Collision Sensor</td>
         <td>碰撞传感器。<br>
 当当前脚本物体与其他任何物体碰撞或保持碰撞时，输出1。</td>
     </tr>
     <tr>
-        <td>150</td>
+        <td>151</td>
         <td>Pendulum</td>
         <td>正弦摆动。<br>
 物体绕axis做周期为period、振幅为amplitude的正弦摆动。角度随时间变化函数：angle = amplitude × sin(2π × (time offset + t) ÷ period)，t为时间参数，每FDT秒刷新。</td>
     </tr>
     <tr>
-        <td>151</td>
+        <td>152</td>
         <td>Pipe Port<br><font color="#DDA0DD">蒸汽组件</font></td>
         <td>管道端口。<br>
 勾选is male，则定义该口为“公口”，否则为“母口”（异性端口才能连接，废话！）；勾选connectable，则该口可以被连接，否则不能；pipe collider为端口的碰撞器，留空则自动向父级找；leak为该口的输出压力。</td>
     </tr>
     <tr>
-        <td>152</td>
+        <td>153</td>
         <td>Pipe Valve<br><font color="#DDA0DD">蒸汽组件</font></td>
         <td></td>
     </tr>
     <tr>
-        <td>153</td>
+        <td>154</td>
         <td>Power Outlet<br><font color="#1F90FF">电力组件</font></td>
         <td>（电源基类，这个看不见电流值，用Charger代替）</td>
     </tr>
     <tr>
-        <td>154</td>
+        <td>155</td>
         <td>Power Plug<br><font color="#1F90FF">电力组件</font></td>
         <td>电线插头。<br>
 body为插头的实体；RFP为插头与电线的连接点；connected socket为当前连接的插座；break treshold为该插头拔下需要的力度。</td>
     </tr>
     <tr>
-        <td>155</td>
+        <td>156</td>
         <td>Power Socket<br><font color="#1F90FF">电力组件</font></td>
         <td>电线插座。<br>
 radius为插头的吸附半径。</td>
     </tr>
     <tr>
-        <td>156</td>
+        <td>157</td>
         <td>Pull Joint</td>
         <td>拉力关节？？<br>
 该关节的移动轴以hook（如果有，否则为body）为起点始终背向anchor point（如果有，否则为anchor）。其余用法与Linear Joint一致。</td>
     </tr>
     <tr>
-        <td>157</td>
+        <td>158</td>
         <td>Ratchet Joint</td>
         <td>棘轮关节。<br>
 单向转动关节。即每转过tooth degrees角度，min value会增加tooth degrees。（其余参数与Angular Joint相同）</td>
     </tr>
     <tr>
-        <td>158</td>
+        <td>159</td>
         <td>Release Grab Signal</td>
         <td>强制松手。<br>
 当input ≥ threshold时，如果手上抓着item物体（不填为该脚本所附加物体），强制将其松开，在block time秒后才可再次拿起。</td>
     </tr>
     <tr>
-        <td>159</td>
+        <td>160</td>
         <td>Reset On Signal</td>
         <td>物体重置。当input有信号时，重置该物体Net Body状态（如果有），重生高度为height；同时将该物体中所有实现IReset接口的脚本RESET。<br>
 <B>*注：RESET的意思是用事件调用ResetState()函数。在其他脚本中提到“RESET”就指的是它。</B></td>
     </tr>
     <tr>
-        <td>160</td>
+        <td>161</td>
         <td>Reset Position At Trigger</td>
         <td>刚体复位。<br>
 使用事件调用ResetPostion（错别字）函数，该脚本所附加物体，的位置将被设置为PAR，刚体的Kinematic将被设置为ISAR。（类似NetBody的respawn）</td>
     </tr>
     <tr>
-        <td>161</td>
+        <td>162</td>
         <td>Respawn Root</td>
         <td>根物体重生。<br>
 添加该脚本，则根物体重生时将其子物体一同重生（无论子物体是否能重生），否则只有根物体自己重生。RESET重生时不受此脚本影响。</td>
     </tr>
     <tr>
-        <td>162</td>
+        <td>163</td>
         <td>Rope</td>
         <td>绳子。<br>
 生成一条过handles中所有点的绳子，长度为依次经过点的距离之和。mesh sigments为绳子网格的段数（越大绳子弯曲时越圆滑）；segments around为绳子柱体的侧棱数；radius为绳子半径；勾选visible，则绳子可见；start body和end body为绳子头尾的连接物；勾选fix start、fix end，则绳子与start body和end body无法分开；若勾选fix start dir、fix end dir，则头尾的连接物与绳子之间不会相对运动；rigid segments为绳子的刚体段数，segment mass为每段质量；length multiply为绳长倍数；rope material为绳子的物理材质。</td>
     </tr>
     <tr>
-        <td>163</td>
+        <td>164</td>
         <td>Rotate Around No Physics</td>
         <td>刚体自动旋转。<br>
 该脚本所附加物体将以velocity的速度旋转。（velocity表示为物体绕三个轴每秒旋转角度）</td>
     </tr>
     <tr>
-        <td>164</td>
+        <td>165</td>
         <td>Screw Hinge Platform</td>
         <td>旋转平台。<br>
 将rotable rigidbody变成一个旋转上升的平台（Y轴）。范围从local max Y~ local min Y，速度为speed/圈（大概），平台旋转的最大角速度为max angular velocity Y；grab state ≥ 1时平台才能正常旋转上升，否则会有一个巨大的力限制平台上升；is collider bottom来表示平台是否到达最低点。</td>
     </tr>
     <tr>
-        <td>165</td>
+        <td>166</td>
         <td>Servo Motor</td>
         <td>电机。<br>
 用来驱动各种joint。模式：Position：触发时将Joint 中的body推向max value × input位置，未触发时将body推向min value位置，body的移动速度与power和Joint中的max speed有关；Speed：触发时将Joint 中的body推向max value位置，未触发时停止移动，body的移动速度与input、power和Joint中的max speed有关；Speed Ignore Limit：触发时将Joint 中的body推向无穷远，未触发时停止移动，body的移动速度与input、power和Joint中的max speed有关。power ≥ 0.9 × needed voltage视为触发。reverse delay为body切换运动方向的延时。勾选signed input，则将min value~max value分成两部分：min value~0和0~max value，input输入负值和正值分别对应这两段（仅Position模式）。</td>
     </tr>
     <tr>
-        <td>166</td>
+        <td>167</td>
         <td>Snow Ball Growth</td>
         <td>滚雪球。<br>
 当melt > 0时，雪球开始融化，融化速度为melt speed/秒，直到scale缩小到minimum scale时，停止融化；radius为抓握半径；density为雪球密度。当与雪球接触的物体的材质名称包含“Snow”，且雪球在滚动时，雪球将增大，growth multiplier为增长速度倍率。</td>
     </tr>
     <tr>
-        <td>167</td>
+        <td>168</td>
         <td>Snow Board</td>
         <td>滑雪板。<br>
 Bindings为脚的固定位置，其中col为触发器，进入碰撞器触发范围的脚会被粘住，sfx connect、sfx disconnect为连接和断开时的声音。body物体必须与该脚本所附加物体为同一物体，当手抓住该物体或其子物体并施加break normal方向的力即可脱离。</td>
     </tr>
     <tr>
-        <td>168</td>
+        <td>169</td>
         <td>Spark</td>
         <td>火花。<br>
 一颗火花粒子。生成后颜色由hot color逐渐变化到cold color，自发光颜色为emit color，亮度为emit intensity。</td>
     </tr>
     <tr>
-        <td>169</td>
+        <td>170</td>
         <td>Spark Emitter</td>
         <td>火花发射器。<br>
 发射一些预制的火花粒子，其中夹杂着一些Spark粒子（附有Spark脚本的物体，Spark Emitter会自动查找）。预制粒子每秒个数在min rate~max rate之间随机；当input有信号时才会发射；当input上升沿（0变到1瞬间）时，立刻发出burst on个火花和所有的Spark粒子；当input下降沿（1变到0瞬间）时，立刻发出burst off个火花。</td>
     </tr>
     <tr>
-        <td>170</td>
+        <td>171</td>
         <td>Steam Consume<br><font color="#DDA0DD">蒸汽组件</font></td>
         <td></td>
     </tr>
     <tr>
-        <td>171</td>
+        <td>172</td>
         <td>Steam Explosion<br><font color="#DDA0DD">蒸汽组件</font><br><font color="red">IReset接口</font></td>
         <td>爆炸。<br>
 当input > threshold且未勾选exploded时，将在rb上施加一个方向大小为force的力，同时exploded signal输出1，勾选exploded。当RESET时，勾选rb的is kinematic、exploded signal置0并且取消勾选exploded。</td>
     </tr>
     <tr>
-        <td>172</td>
+        <td>173</td>
         <td>Steam Gauge<br><font color="#DDA0DD">蒸汽组件</font></td>
         <td>蒸汽压力计。<br>
 将input值 0~max value线性对应到pin延X轴的旋转角angle min~angle max上，pin的旋转速度为speed度/秒。</td>
     </tr>
     <tr>
-        <td>173</td>
+        <td>174</td>
         <td>Steam Node<br><font color="#DDA0DD">蒸汽组件</font></td>
         <td>蒸汽节点。<br>
 由于管理当前物体所附加的Pipe Port。该脚本所附加物体的子物体中所有的Pipe Port都将视为该节点的压力输出口。运行时点击“Attach”，则将该物体的Pipe Port与附近的异性口的Pipe Port连接；点击“Detach”，则将该物体的Pipe Port与已相连的Pipe Port断开连接。</td>
     </tr>
     <tr>
-        <td>174</td>
+        <td>175</td>
         <td>Steam Source<br><font color="#DDA0DD">蒸汽组件</font></td>
         <td>蒸汽源。<br>
 指定一个Node作为蒸汽压力源，其压力为pressure。</td>
     </tr>
     <tr>
-        <td>175</td>
+        <td>176</td>
         <td>Steam Valve<br><font color="#DDA0DD">蒸汽组件</font></td>
         <td></td>
     </tr>
     <tr>
-        <td>176</td>
+        <td>177</td>
         <td>Steam Valve 2<br><font color="#DDA0DD">蒸汽组件</font></td>
         <td></td>
     </tr>
     <tr>
-        <td>177</td>
+        <td>178</td>
         <td>Sun</td>
         <td>太阳。<br>
 标记该物体为太阳。</td>
     </tr>
     <tr>
-        <td>178</td>
+        <td>179</td>
         <td>Target Helper</td>
         <td>目标小助手。<br>
 当物体Tag选为“NoGrab”且附加此脚本时，该物体将无法抓取。（尚不清楚该脚本其他功能）</td>
     </tr>
     <tr>
-        <td>179</td>
+        <td>180</td>
         <td>Tire</td>
         <td>轮胎。<br>
 稳定转向时的车轮。</td>
     </tr>
     <tr>
-        <td>180</td>
+        <td>181</td>
         <td>Track Object</td>
         <td>跟随物体。<br>
 该脚本所附加物体将始终跟随（中心重合趋势）object to track物体。</td>
     </tr>
     <tr>
-        <td>181</td>
+        <td>182</td>
         <td>Trigger Volume<br><font color="red">IReset接口</font></td>
         <td>触发物体。<br>
 当CTCF和additional colliders中的被检测物体进入该物体的触发范围内时，发出信号。有任何一个被检测物体进入范围时，输出的信号值为OVI，同时启用AOE中的物体；当所有被检测物体都不在范围内时，输出的信号值为OVO，同时关闭DOE中的物体。勾选RELAS，则初始化时将其输出设置为OVO，关闭DOE中的物体。不勾选track colliders，则触发状态只与第一个进入的物体有关（如：A进入，B进入，A退出，这时即使B仍在触发范围内，依然判定为没有触发）。当RESET时，输出设置为OVO。</td>
     </tr>
     <tr>
-        <td>182</td>
+        <td>183</td>
         <td>Voltage To Signal<br><font color="#1F90FF">电力组件</font></td>
         <td>电压→信号。<br>
 如果ampers > max I：<br>
@@ -1161,49 +1171,49 @@ Bindings为脚的固定位置，其中col为触发器，进入碰撞器触发范
 输出：voltage</td>
     </tr>
     <tr>
-        <td>183</td>
+        <td>184</td>
         <td>Voronoi Shatter</td>
         <td>碎片。<br>
 impulse threshold为打破物体的最小力度；ABT为多次击打破碎的累计力度；human hardness为小白人硬度，为0则无法用人打破玻璃；shard prefab为碎片的预制件（不能有刚体）；physics material为碎片的物理材质；TLA为物体破碎的方向；DPSM为碎片每平方米密度（质量），如果碎片过小，最小质量为4；total mass为所有碎片总质量；shard layer设置碎片的Layer；ACS来调整碎片在某个轴向上的大小；PSIF为破裂时，碎片的飞出力度；MSV为碎片的最大速度；cell inset（不知道如何形容，自己试吧）。</td>
     </tr>
     <tr>
-        <td>184</td>
+        <td>185</td>
         <td>Water Plane</td>
         <td>水面。<br>
 定义一个水面。勾选RNB，则任何落入水中的Net Body物体将在RNBD秒后重生。勾选can drown，则头部入水后10秒死亡；Down向量标记水底的方向（指向水底）；flow向量为浮力的方向与大小。</td>
     </tr>
     <tr>
-        <td>185</td>
+        <td>186</td>
         <td>Water Level Updater</td>
         <td>水平面更新器。<br>
 当一个附有Water Item Volume脚本的物体进入该物体的触发范围内时，该物体的Position.Y将每秒升高lift speed米，总计升高volume米（不会超过max height高度）。</td>
     </tr>
     <tr>
-        <td>186</td>
+        <td>187</td>
         <td>Water Item Volume</td>
         <td>落水物体积指示器。<br>
 标记该脚本所附加物体落水后的体积volume。</td>
     </tr>
     <tr>
-        <td>187</td>
+        <td>188</td>
         <td>Water Motor<br><font color="red">IReset接口</font></td>
         <td>水下发动机。<br>
 当input有信号时，在force point的Z轴方向施加一个大小为force + force linear × 当前速度 + force square × 当前速度 ^ 2的力。</td>
     </tr>
     <tr>
-        <td>188</td>
+        <td>189</td>
         <td>Water Render</td>
         <td>水波渲染。<br>
 该脚本会让“Water”Shader动起来。scale为波纹高度。</td>
     </tr>
     <tr>
-        <td>189</td>
+        <td>190</td>
         <td>Wind 2</td>
         <td>风。<br>
 风力的作用范围：①以wind向量为轴，core radius为底面半径，dist为高的圆柱形区域为完全受力区域；②以wind向量为轴，radial falloff为底面半径，dist falloff为高的圆柱形区域，该区域与①区域的不重叠部分为风力的衰减区域，处于该区域中，物体受到的风力随距离增加而减小。物体受力与input、wind长度、C drag和max acceleration有关，当|input × wind| > 1时，物体受力将不再与input和wind向量有关。</td>
     </tr>
     <tr>
-        <td>190</td>
+        <td>191</td>
         <td>Wire<br><font color="#1F90FF">电力组件</font></td>
         <td>电线。<br>
 start plug、end plug为电线头尾的插头。（其他参数与Rope一样）</td>
@@ -1212,7 +1222,7 @@ start plug、end plug为电线头尾的插头。（其他参数与Rope一样）<
         <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">rooftop更新后新增</font></td>
     </tr>
     <tr>
-        <td>191</td>
+        <td>192</td>
         <td>Bowling Alley</td>
         <td>保龄球道。<br>
 该脚本会在首次启用3秒后刷新所有球瓶。在BallInPins有信号的情况下：<br>
@@ -1220,104 +1230,104 @@ start plug、end plug为电线头尾的插头。（其他参数与Rope一样）<
 ②未一次全中，则SpareMode输出1，隐藏所有击倒的球瓶，同时计时10秒，在这期间如果全中，进入①；否则所有球瓶全部刷新。</td>
     </tr>
     <tr>
-        <td>192</td>
+        <td>193</td>
         <td>Bowling pin</td>
         <td>保龄球瓶。<br>
 Spawn Position为保龄球道刷新时，保龄球瓶的出生位置；当Upright Collider与Upright Sensor碰撞器无直接接触时，该球瓶视为被击倒，否则为没有击倒。</td>
     </tr>
     <tr>
-        <td>193</td>
+        <td>194</td>
         <td>Collision By Layer Sensor</td>
         <td>层碰撞检测器。<br>
 当该脚本所附加物体与Layer To Check层物体发生碰撞时，output输出信号。</td>
     </tr>
     <tr>
-        <td>194</td>
+        <td>195</td>
         <td>Collision By Tag Sensor</td>
         <td>标签碰撞检测器。<br>
 当该脚本所附加物体与Tag To Check层物体发生碰撞时，output输出信号。</td>
     </tr>
     <tr>
-        <td>195</td>
+        <td>196</td>
         <td>SignalCycler<br><font color="red">IReset接口</font></td>
         <td>信号轮询器。<br>
 当RSRTI未勾选，input每个上升沿（从0变到1），outputs依次轮流循环有效；RSRTI勾选，则为每个下降沿（从1变到0）outputs切换【但目前该选项无效，都是上升沿切换】。当RESET时，重置输出，从Starting Value开始重新轮询。</td>
     </tr>
     <tr>
-        <td>196</td>
+        <td>197</td>
         <td>Signal Object Spawner<br><font color="red">IReset接口</font></td>
         <td>物体生成器。<br>
 首先需要将待生成的物体提前制作好，起名为：<任意名称>[空格] (Managed by SignalObjectSpawner)，并作为Spawn Location的子物体（是否启用均可），个数最好与MSO相等（个数超过MSO，则超过的物体不会被生成；个数少于MSO，会报错...）。当input有信号时，物体会依次循环生成。当RESET时，将所有待生成物体隐藏。OTD没用。</td>
     </tr>
     <tr>
-        <td>197</td>
+        <td>198</td>
         <td>Signal Reset Node Graph</td>
         <td>重置节点图。（目前无法使用）<br>
 当input有信号时，为该脚本所附加物体及其子物体中所有实现IReset接口的物体，执行RESET。</td>
     </tr>
     <tr>
-        <td>198</td>
+        <td>199</td>
         <td>Signal Value Hold</td>
         <td>保持信号值。<br>
 当input有信号时，output输出1并永久保持（无法重置）。</td>
     </tr>
     <tr>
-        <td>199</td>
+        <td>200</td>
         <td>Collider Label Trigger Volume<br><font color="red">IReset接口</font></td>
         <td>自定义标签触发器。<br>
 在LTCF中填入待检测的标签名，当带有Collider Label脚本且标签名一致的物体进入检测区域，output输出1。其他参数见Trigger Volume。</td>
     </tr>
     <tr>
-        <td>200</td>
+        <td>201</td>
         <td>Collider Label</td>
         <td>自定义标签。<br>
 Label为自定义标签名。</td>
     </tr>
     <tr>
-        <td>201</td>
+        <td>202</td>
         <td>Distance Tool<br><font color="FFD701">仅编辑器</font></td>
         <td>距离工具。【目前为线段绘制工具】<br>
 在Scene面板中绘制一条颜色为Line Color从Start Point到End Point的线段，端点球半径为Gizmo Radius。</td>
     </tr>
     <tr>
-        <td>202</td>
+        <td>203</td>
         <td>Force Area</td>
         <td>力场区域。<br>
 进入该触发范围的物体将受到大小方向为Force Direction × Force Multiplier的力；Ignore Parents为忽略受力的物体。</td>
     </tr>
     <tr>
-        <td>203</td>
+        <td>204</td>
         <td>Limit Velocity</td>
         <td>限制刚体速度。<br>
 将body的速度限制在Max Speed以内。</td>
     </tr>
     <tr>
-        <td>204</td>
+        <td>205</td>
         <td>Ragdoll Player Collider</td>
         <td>玩家击晕器。<br>
 玩家与该脚本所附加物体发生碰撞时，玩家将被击晕Ragdoll Duration秒。</td>
     </tr>
     <tr>
-        <td>205</td>
+        <td>206</td>
         <td>Reset Position At Trigger</td>
         <td>重置刚体位置。<br>
 使用事件调用ResetPostion()函数，将Rb重置到PAR位置，如果IKAR勾选，则重置后Rb的isKinematic也将被勾选。</td>
     </tr>
     <tr>
-        <td>206</td>
+        <td>207</td>
         <td>RigidBody Constrain Transform</td>
         <td>刚体变换限制。<br>
 当FPAS勾选时，限制刚体的移动（勾选Freeze Position的XYZ轴）；<br>
 当FRAS勾选时，限制刚体的旋转（勾选Freeze Rotation的XYZ轴）。</td>
     </tr>
     <tr>
-        <td>207</td>
+        <td>208</td>
         <td>Signal Checkpoint 2<br><font color="red">IReset接口</font></td>
         <td>信号存档点信息。<br>
 Last Checkpoint输出上一个激活的存档点的Number（节点不显示）。</td>
     </tr>
     <tr>
-        <td>208</td>
+        <td>209</td>
         <td>Simple Follow 2</td>
         <td>简单跟随。<br>
 该脚本所附加物体将始终跟随Target，跟随位置为：Z轴始终指向Target，并且距离Target水平距离为，Distance竖直高度为Height。当Target在Y轴方向移动或者绕Y轴旋转时，物体将以平滑的方式逐渐趋向跟随位置。Height Damper越小，延Y轴移动时稳定时间越长；Rotation Damper越小，绕Y轴移动时稳定时间越长。<br>
@@ -1325,13 +1335,13 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
 上例中，Distance = 10,Height = 5。</td>
     </tr>
     <tr>
-        <td>209</td>
+        <td>210</td>
         <td>Skybox Changer</td>
         <td>天空盒更换器。<br>
 该脚本要求同物体上同时具有dropdown组件，用其Value字段选择确定的天空盒。使用事件调用ChangeSkybox()函数，场景的天空盒将被替换为Skyboxs中的第Value个。</td>
     </tr>
     <tr>
-        <td>210</td>
+        <td>211</td>
         <td>Skybox Rotator</td>
         <td>天空盒旋转器。<br>
 使用事件调用ToggleSkyboxRotation()函数来切换是否旋转，旋转速度为每秒Rotation Per Second度（绕y轴）。</td>
@@ -1341,7 +1351,7 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
         <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">forest更新后新增</font></td>
     </tr>
     <tr>
-        <td>211</td>
+        <td>212</td>
         <td>Signal Counter<br><font color="red">IReset接口</font></td>
         <td>计数器。<br>
 每当increment有信号时，output输出值 + 1；每当decrement有信号时，output输出值 - 1；当reset有信号时output重置为0；当output < aimed value时，ILTAV输出1；当output = aimed value时，IAV输出1；当output > aimed value时，IGTAV输出1；为SAV输入非0信号，可修改aimed value的值；为set value输入信号，可修改output的值（当不勾选integer only时，可为output赋予小数值）。当RESET时，output值重新归零。</td>
@@ -1351,73 +1361,73 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
         <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">lab更新后新增</font></td>
     </tr>
     <tr>
-        <td>212</td>
+        <td>213</td>
         <td>SignalAmbientLight</td>
         <td>信号环境光。<br>
 通过rgba四路输入信号来设置环境光。</td>
     </tr>
     <tr>
-        <td>213</td>
+        <td>214</td>
         <td>SignalMathModulo</td>
         <td>取余数。<br>
 输出：input mod modulo。</td>
     </tr>
     <tr>
-        <td>214</td>
+        <td>215</td>
         <td>SignalMathRandom</td>
         <td>随机数。<br>
 当roll 有信号时，输出一个在区间[min, max)上的随机数，勾选Return Integers将只生成该区间上的整数随机数。</td>
     </tr>
     <tr>
-        <td>215</td>
+        <td>216</td>
         <td>SignalMathRound</td>
         <td>取整。<br>
 将input取整后输出。operation：UP：向上取整；DOWN：向下取整；NEAREST：就近取整（四舍五入）。</td>
     </tr>
     <tr>
-        <td>216</td>
+        <td>217</td>
         <td>Signal Select</td>
         <td>信号选择器。<br>
 每当cycle有信号时，将从input0开始轮流循环导通输入端和其对应的同编号输出端，reset有信号时将重置选择计数器，并且关闭所有通路。当NDT选择为“Side By Side”时，每个输入端及其对应的输出端将交错排列；当选择“Grouped”时，输入端和输出端将分组排列。</td>
     </tr>
     <tr>
-        <td>217</td>
+        <td>218</td>
         <td>Lerp Local Rotation</td>
         <td>恢复自身旋转。<br>
 使用事件调用CheckRotation()函数后，该脚本所附加物体的将在duration秒内，从当前位置匀速旋转到初始角度。</td>
     </tr>
     <tr>
-        <td>218</td>
+        <td>219</td>
         <td>Lerp To Transform</td>
         <td>恢复自身位置。<br>
 使用事件调用BeginLerp()函数后，OTL物体将在lerp time秒内从初始位置移动到destination transform位置。</td>
     </tr>
     <tr>
-        <td>219</td>
+        <td>220</td>
         <td>Move Over Time</td>
         <td>随时间移动。<br>
 使用事件调用StartMove()函数后，该脚本所附加物体将在move duration秒内从初始位置移动( DTM模长 × move duration × speed )距离。调用ResetPosition()函数可重置物体位置。调用StopAllCoroutines()可停止物体移动，但是下次再调用StartMove()函数时，初始位置将变为物体停止时的位置。</td>
     </tr>
     <tr>
-        <td>220</td>
+        <td>221</td>
         <td>Signal Gravity</td>
         <td>信号重力。<br>
         输入信号来分别控制重力的三个分量，当reset有信号时，将重力向量设回默认值。</td>
     </tr>
     <tr>
-        <td>221</td>
+        <td>222</td>
         <td>Signal Release</td>
         <td>强制松手2。<br>
 当release有信号时，如果玩家手上抓着to release物体，则将强制松开该物体。</td>
     </tr>
     <tr>
-        <td>222</td>
+        <td>223</td>
         <td>Signal Ignore Input<br><font color="red">IReset接口</font></td>
         <td>信号输入屏蔽。<br>
 通常情况下，该组件输入与输出时刻同步（output = input）；当RESET时，该组件会进入输入屏蔽状态。组件处于输入屏蔽状态时，输入端将不起作用（output始终为0），该状态将持续Ignore Time秒。</td>
     </tr>
     <tr>
-        <td>223</td>
+        <td>224</td>
         <td>Signal Change Layer<br><font color="red">IReset接口</font></td>
         <td>信号变换层。<br>
 当input有信号时，将OTC物体的层设置为CTL，若勾选RAT，则该更改在持续TUR秒后设置回运行前的层。当RESET时，立刻将OTC物体的层设置为运行前的层。</td>
@@ -1427,14 +1437,14 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
         <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">red rock更新后新增</font></td>
     </tr>
     <tr>
-        <td>224</td>
+        <td>225</td>
         <td>Follow Object In Bounds</td>
         <td>物体跟随约束。<br>
 ① 当OTF物体轴心点位于boundaries内部时，该脚本所附加物体将始终跟随OTF物体（此时类似于simple follow 2）；<br>
 ② 当OTF物体轴心点位于boundaries外部时，该脚本所附加物体将会被限制在boundaries内部，此时该物体的位置将处于，boundaries上离OTF物体最近的一点上。</td>
     </tr>
     <tr>
-        <td>225</td>
+        <td>226</td>
         <td>Reset Levers Pos</td>
         <td>设置物体相对位置。<br>
 使用事件调用该脚本的ResetStartPos()函数，会分别将LMLR、LALR和LAUD物体的相对位置设置为LMLRS、LALRS和LAUDS。（下面三个GameObject框不能为空，否则报错无法使用）</td>
