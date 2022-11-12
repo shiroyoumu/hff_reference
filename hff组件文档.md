@@ -1348,7 +1348,7 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
     </tr>
     </tr>
         <tr>
-        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">forest更新后新增</font></td>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Forest更新后新增</font></td>
     </tr>
     <tr>
         <td>212</td>
@@ -1358,7 +1358,7 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
     </tr>
     </tr>
         <tr>
-        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">lab更新后新增</font></td>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Lab更新后新增</font></td>
     </tr>
     <tr>
         <td>213</td>
@@ -1434,7 +1434,7 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
     </tr>
     </tr>
         <tr>
-        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">red rock更新后新增</font></td>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Red Rock更新后新增</font></td>
     </tr>
     <tr>
         <td>225</td>
@@ -1448,6 +1448,38 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
         <td>Reset Levers Pos</td>
         <td>设置物体相对位置。<br>
 使用事件调用该脚本的ResetStartPos()函数，会分别将LMLR、LALR和LAUD物体的相对位置设置为LMLRS、LALRS和LAUDS。（下面三个GameObject框不能为空，否则报错无法使用）</td>
+    </tr>  
+    </tr>
+        <tr>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Miniature更新后新增</font></td>
+    </tr> 
+    <tr>
+        <td>227</td>
+        <td>Signal Value Hold With Reset</td>
+        <td>可重置保持信号值。<br>
+当input有信号时，output保持输出1；当release有信号时，output归0（可重复触发，OTO没用）。（对比与199. Signal Value Hold）
+</td>
+    </tr>  
+    <tr>
+        <td>228</td>
+        <td>Boulder Handler</td>
+        <td>~~巨石处理器。~~<br>
+该脚本所附加物体与带有“player”标签的物体发生碰撞时将根据force mode改变受力状态。Force：对物体施加一个大小为FTKP的恒力，物体速度变化与物体质量有关；Impulse：对物体施加一个大小为FTKP的瞬时冲击力，物体速度变化与物体质量有关；Velocity Change：将物体的瞬时速度设置为FTKP，与物体质量无关；Acceleration：对物体施加一个大小为FTKP的加速度，与物体质量无关。在脚本激活时，如果该脚本所附加物体具有刚体，则将在delay秒后取消勾选刚体的is kinematic属性。
+</td>
+    </tr> 
+    <tr>
+        <td>229</td>
+        <td>Cart Controller</td>
+        <td>矿车控制器。<br>
+该脚本所附加的刚体物体将沿Z轴方向往复运动，速度为speed，其中，当该物体碰撞器勾选is trigger且start物体进入触发范围内时，物体将在WTUG秒后开始沿Z轴正方向移动；同理，当end物体进入触发范围内时，物体将在WTOH秒后开始沿Z轴负方向移动。使用事件调用StopMoving()函数，该物体将停止运动，直到该物体再次感应到start或end物体。
+</td>
+    </tr>  
+    <tr>
+        <td>230</td>
+        <td>Impact Sensor</td>
+        <td>冲击力传感器。<br>
+当该物体所附加物体受到大于threshold的冲击力时，将触发OTE()事件。
+</td>
     </tr>   
 </table>
 
