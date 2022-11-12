@@ -1463,7 +1463,7 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
     <tr>
         <td>228</td>
         <td>Boulder Handler</td>
-        <td>~~巨石处理器。~~<br>
+        <td><s>巨石处理器。</s><br>
 该脚本所附加物体与带有“player”标签的物体发生碰撞时将根据force mode改变受力状态。Force：对物体施加一个大小为FTKP的恒力，物体速度变化与物体质量有关；Impulse：对物体施加一个大小为FTKP的瞬时冲击力，物体速度变化与物体质量有关；Velocity Change：将物体的瞬时速度设置为FTKP，与物体质量无关；Acceleration：对物体施加一个大小为FTKP的加速度，与物体质量无关。在脚本激活时，如果该脚本所附加物体具有刚体，则将在delay秒后取消勾选刚体的is kinematic属性。
 </td>
     </tr> 
