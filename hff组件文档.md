@@ -1,6 +1,6 @@
 参考类库    
 HFF-Code-CSharp.dll（2853 KB，2021-10-11）    
-Assembly-CSharp.dll（2388 KB，2022-04-13）    
+Assembly-CSharp.dll（2459 KB，2023-02-23）    
 
 使用 Ctrl + F 搜索
 
@@ -1048,7 +1048,7 @@ radius为插头的吸附半径。</td>
         <td>163</td>
         <td>Rope</td>
         <td>绳子。<br>
-生成一条过handles中所有点的绳子，长度为依次经过点的距离之和。mesh sigments为绳子网格的段数（越大绳子弯曲时越圆滑）；segments around为绳子柱体的侧棱数；radius为绳子半径；勾选visible，则绳子可见；start body和end body为绳子头尾的连接物；勾选fix start、fix end，则绳子与start body和end body无法分开；若勾选fix start dir、fix end dir，则头尾的连接物与绳子之间不会相对运动；rigid segments为绳子的刚体段数，segment mass为每段质量；length multiply为绳长倍数；rope material为绳子的物理材质。</td>
+生成一条过handles中所有点的绳子，长度为依次经过点的距离之和。mesh sigments为绳子网格的段数（越大绳子弯曲时越圆滑）；segments around为绳子柱体的侧棱数；radius为绳子半径；勾选visible，则绳子可见；start body和end body为绳子头尾的连接物；勾选fix start、fix end，则绳子与start body和end body无法分开；若勾选fix start dir、fix end dir，则头尾的连接物与绳子之间不会相对运动；rigid segments为绳子的刚体段数，segment mass为每段质量；length multiply为绳长倍数；rope material为绳子的物理材质。（该脚本所附加物体上同时还需要Mesh Filter和Mesh Renderer为绳子设置渲染材质）</td>
     </tr>
     <tr>
         <td>164</td>
@@ -1480,7 +1480,78 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
         <td>冲击力传感器。<br>
 当该物体所附加物体受到大于threshold的冲击力时，将触发OTE()事件。
 </td>
-    </tr>   
+    </tr>  
+    <tr>
+        <td>231</td>
+        <td>（补）Bendable</td>
+        <td>可弯曲物体。<br>
+初始配置方法见Rope脚本。与之不同的是该脚本创建的“绳子”是固定的，当这条“绳子”与其他非玩家物体发生碰撞时将发生形变。Bend Multiplier将影响其形变速度，Treshold为发生形变的邻界力度。
+</td>
+    </tr> 
+    <tr>
+        <td>232</td>
+        <td>Distance Along</td>
+        <td>方向位移。<br>
+输出：Dot(该物体相对位置, Axis)<br>
+即，返回该脚本所附加物体延Axis方向的位移。
+</td>
+    </tr>
+    <tr>
+        <td>233</td>
+        <td>Break On Grab</td>
+        <td>抓取断裂。<br>
+当该脚本所附加物体具有Fixed Joint组件且抓取该物体时，将删除Fixed Joint组件。
+</td>
+    </tr>
+    <tr>
+        <td>234</td>
+        <td>Chain Ferry</td>
+        <td>渡船链（位移限制器）。<br>
+将Boat的Z位置限制在 [初始Z位置, 初始Z位置 + Max Disp] 范围内。（建议锁X, Y位置，否则会抽搐）
+</td>
+    </tr>
+    <tr>
+        <td>235</td>
+        <td>Constant Velocity</td>
+        <td>常速。<br>
+使该脚本所附加物体延Z轴正方向移动，速度与Velocity成正比（由于代码写到了Update()里，因此实际速度受游戏帧数影响）。
+</td>
+    </tr>
+    <tr>
+        <td>236</td>
+        <td>Dont Break Away</td>
+        <td>不打飞？？<br>
+当该脚本所附加物体受到外力超过Threshold Force时，将会对与该物体通过Fixed Joint相连的物体施加一个反向的力，大小为外力 × PBFM。
+</td>
+    </tr>
+    <tr>
+        <td>237</td>
+        <td>Tracking Trigger Volume</td>
+        <td>追踪触发器。（需要与Movement Tracker同时使用）<br>
+触发功能与Trigger Volume类似。
+</td>
+    </tr>
+    <tr>
+        <td>238</td>
+        <td>Movement Tracker</td>
+        <td>移动追踪器。<br>
+当Start Trigger发出信号后，该脚本视为“开始追踪”，之后，当End Trigger发出信号后视为“追踪完成”，此时该脚本输出1，在之后，当Floor Trigger发出信号后则视为“取消追踪”，输出0。
+</td>
+    </tr>
+    <tr>
+        <td>239</td>
+        <td>Rotation</td>
+        <td>常速旋转。<br>
+使该脚本所附加物体绕Y轴旋转，速度与Speed成正比（由于代码写到了Update()里，因此实际速度受游戏帧数影响）。
+</td>
+    </tr>
+    <tr>
+        <td>240</td>
+        <td>Signal Set Translation For Object</td>
+        <td>信号→位置。<br>
+与Signal Set Translation功能相同，区别是该脚本控制移动的是OTM物体，而Signal Set Translation移动的是脚本所附加物体。
+</td>
+    </tr>
 </table>
 
 标记说明：<br>
