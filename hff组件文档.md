@@ -1552,6 +1552,64 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
 与Signal Set Translation功能相同，区别是该脚本控制移动的是OTM物体，而Signal Set Translation移动的是脚本所附加物体。
 </td>
     </tr>
+    <tr>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Navel更新后新增</font></td>
+    </tr>
+    <tr>
+        <td>241</td>
+        <td>Audio Loop Controller</td>
+        <td>循环声音控制器。<br>
+使用事件调用以下函数，脚本将按一定顺序播放声音：<br>
+Play()：先播放start，播完后播放loop。start delay为延迟播放的时间；<br>
+Pause()：暂停播放loop，同时播放end；<br>
+Stop()：停止播放loop，同时播放end；<br>
+StopImmediately()：立刻停止所有声音。
+</td>
+    </tr>
+    <tr>
+        <td>242</td>
+        <td>Camera Level Override</td>
+        <td>修改人物摄像机可视距离。<br>
+将该脚本挂载至任意物体，可以将人物摄像机最远可视距离修改为OCCFP。
+</td>
+    </tr>
+    <tr>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Dockyard更新后新增</font></td>
+    </tr>
+    <tr>
+        <td>243</td>
+        <td>Move Cart</td>
+        <td>矿车移动。<br>
+使用事件调用SetVal()函数，可使Cart刚体受到大小为Force的瞬时力。脚本存在一内部状态，初值为True，调用SetVal()使其状态改变时（即调用SetVal(false)时）Cart物体将受一次力，方向延物体X轴负方向。此时脚本内部状态将变为SetVal中的参数值false，如果再次调用SetVal(true)，则物体将会再次受力。交替调用SetVal(false)和SetVal(true)可使物体多次受力。<br>
+使用事件调用SetDirectionForward()和SetDirectionBackward()可改变物体受力方向。
+</td>
+    </tr>
+    <tr>
+        <td>244</td>
+        <td>Camera Controller Overrides Zone</td>
+        <td>修改人物摄像机视角。<br>
+该脚本需要一个勾选is trigger的碰撞器，当玩家进入该触发范围时，如果勾选CMO分类下的is enabled，将会根据value产生以下效果：<br>
+①	Far：将人物摄像机调至远景位（游戏默认位置）<br>
+②	Close：将人物摄像机调至近景位<br>
+③	First Person：将人物摄像机调至第一人称视角<br>
+如果勾选FTOO分类下的is enabled，当CMO中的value处于First Person时，玩家第一人称视角将施加value大小的偏移。
+</td>
+    </tr>
+    <tr>
+        <td>245</td>
+        <td>Signal Checkpoint Reached</td>
+        <td>信号存档点。<br>
+current checkpoint输出最后一个存档点的number。
+</td>
+    </tr>
+    <tr>
+        <td>246</td>
+        <td>Signal Shattered</td>
+        <td>信号破碎检测。<br>
+当SOTT物体破碎时，输出1，否则输出0。
+</td>
+    </tr>
+    
 </table>
 
 标记说明：<br>
