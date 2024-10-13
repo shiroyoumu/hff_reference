@@ -1614,6 +1614,9 @@ current checkpoint输出最后一个存档点的number。
 </td>
     </tr>
     <tr>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Museum更新后新增</font></td>
+    </tr>
+    <tr>
         <td>247</td>
         <td>Net Body Reset Sensor</td>
         <td>刚体重生感应器。<br>
