@@ -1,6 +1,10 @@
 参考类库    
 HFF-Code-CSharp.dll（2853 KB，2021-10-11）    
-Assembly-CSharp.dll（2482 KB，2024-06-06）    
+Assembly-CSharp.dll（2491 KB，2024-09-12） 
+
+
+一些脚本只存在于游戏中的Assembly-CSharp.dll中，并不在Unity中的HFF-Code-CSharp.dll中，你可以在ScriptNotInHFF目录中找到它们，并手动添加至你的Unity工程中，即可正常使用和导出。
+
 
 使用 Ctrl + F 搜索
 
@@ -1607,6 +1611,20 @@ current checkpoint输出最后一个存档点的number。
         <td>Signal Shattered</td>
         <td>信号破碎检测。<br>
 当SOTT物体破碎时，输出1，否则输出0。
+</td>
+    </tr>
+    <tr>
+        <td>247</td>
+        <td>Net Body Reset Sensor</td>
+        <td>刚体重生感应器。<br>
+当body to track物体重生时，value会输出一个持续时间较短的脉冲信号。Inverted value为value反向输出。
+</td>
+    </tr>
+    <tr>
+        <td>248</td>
+        <td>Object In Sight Detector</td>
+        <td>视野检测器。<br>
+当人物摄像机处在该脚本所附加物体的trigger碰撞器中时，且OTT物体处于视野中时，输出1（无法重置）。
 </td>
     </tr>
     
