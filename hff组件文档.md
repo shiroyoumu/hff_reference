@@ -1630,6 +1630,30 @@ current checkpoint输出最后一个存档点的number。
 当人物摄像机处在该脚本所附加物体的trigger碰撞器中时，且OTT物体处于视野中时，输出1（无法重置）。
 </td>
     </tr>
+<tr>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Candyworld更新后新增</font></td>
+    </tr>
+    <tr>
+        <td>249</td>
+        <td>Grab Blocker</td>
+        <td>禁止抓握区域。<br>
+该脚本需要一个勾选is trigger的碰撞器，当玩家进入该触发范围时，玩家无法抓取任何物体，并伴随烦人的吸附声，孬。
+</td>
+    </tr>
+    <tr>
+        <td>250</td>
+        <td>Reset Velocity</td>
+        <td>重置速度。<br>
+当该脚本RESET时，重置该脚本所附加物体的速度（如果有刚体）。
+</td>
+    </tr>
+    <tr>
+        <td>251</td>
+        <td>Water Color</td>
+        <td>水体颜色。<br>
+修改人物在水中看到的颜色（必须Lighting中开启Fog）。
+</td>
+    </tr>
     
 </table>
 
