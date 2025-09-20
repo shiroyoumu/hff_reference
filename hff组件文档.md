@@ -1,6 +1,6 @@
 参考类库    
-HFF-Code-CSharp.dll（2853 KB，2021-10-11）    
-Assembly-CSharp.dll（2491 KB，2024-09-12） 
+HFF-Code-CSharp.dll（3609 KB，2025-09-16）    
+Assembly-CSharp.dll（2507 KB，2025-09-16） 
 
 
 一些脚本只存在于游戏中的Assembly-CSharp.dll中，并不在Unity中的HFF-Code-CSharp.dll中，你可以在ScriptNotInHFF目录中找到它们，并手动添加至你的Unity工程中，即可正常使用和导出。
@@ -1289,9 +1289,9 @@ Label为自定义标签名。</td>
     </tr>
     <tr>
         <td>202</td>
-        <td>Distance Tool<br><font color="FFD701">仅编辑器</font></td>
-        <td>距离工具。【目前为线段绘制工具】<br>
-在Scene面板中绘制一条颜色为Line Color从Start Point到End Point的线段，端点球半径为Gizmo Radius。</td>
+        <td>~~Distance Tool~~<br><font color="FFD701">仅编辑器</font><br>（见262）</td>
+        <td>~~距离工具。【目前为线段绘制工具】~~<br>
+~~在Scene面板中绘制一条颜色为Line Color从Start Point到End Point的线段，端点球半径为Gizmo Radius。~~</td>
     </tr>
     <tr>
         <td>203</td>
@@ -1530,7 +1530,7 @@ Last Checkpoint输出上一个激活的存档点的Number（节点不显示）�
     </tr>
     <tr>
         <td>237</td>
-        <td>Tracking Trigger Volume</td>
+        <td>Tracking Trigger Volume<br><font color="red">IReset接口</font></td>
         <td>追踪触发器。（需要与Movement Tracker同时使用）<br>
 触发功能与Trigger Volume类似。
 </td>
@@ -1642,19 +1642,107 @@ current checkpoint输出最后一个存档点的number。
     </tr>
     <tr>
         <td>250</td>
-        <td>Reset Velocity</td>
+        <td>Reset Velocity<br><font color="red">IReset接口</font></td>
         <td>重置速度。<br>
 当该脚本RESET时，重置该脚本所附加物体的速度（如果有刚体）。
 </td>
     </tr>
     <tr>
         <td>251</td>
-        <td>Water Color</td>
-        <td>水体颜色。<br>
-修改人物在水中看到的颜色（必须Lighting中开启Fog）。
+        <td>~~Water Color~~</td>
+        <td>~~水体颜色。~~<font color="red">（Backyard更新后被移除）</font><br>
+~~修改人物在水中看到的颜色（必须Lighting中开启Fog）。~~
 </td>
     </tr>
-    
+  <tr>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Test Chamber更新后新增</font></td>
+    </tr>  
+   <tr>
+        <td>252</td>
+        <td>Boat Spawn Occupance</td>
+        <td>物体更换重生点。<br>
+当该脚本状态变为开启时，net body物体的重生点变为new spawn的位置；当该脚本状态变为关闭时，net body物体的重生点变为old spawn的位置。
+</td>
+    </tr> 
+    <tr>
+        <td>253</td>
+        <td>Switch Materials</td>
+        <td>替换材质。<br>
+将其挂载至具有MeshRenderer的物体上，使用事件调用SwitchObjectMaterials()方法并传入一个材质，可使该脚本所附加物体的材质替换为传入的材质；使用事件调用SwitchMaterialsInChildren()方法并传入一个材质，可使该脚本所附加物体的所有子物体的材质替换为传入的材质。
+</td>
+    </tr> 
+<tr>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Steampunk Party更新后新增</font></td>
+    </tr>  
+<tr>
+        <td>254</td>
+        <td>Free Motion Motor<br><font color="red">IReset接口</font></td>
+        <td>物体更换重生点。<br>
+飞行器。
+可以使body成为一个简易飞行器。<br>
+①	当|input|有效、|power|≥0.9时，该脚本生效。<br>
+②	body的移动速度与旋转速度由movement speed与rotation speed控制。axis为基准方向。<br>
+③	body的运动姿态由以下参数控制：
+surge、sway、heave分别控制body前后、右左、上下的移动；
+roll、pitch、yaw分别控制body绕Z轴旋转的正反、绕X轴旋转的正反、绕Y轴旋转的反正。（正旋转方向通过右手定则确定）<br>
+④	勾选UKM及body上的is kinematic，该物体移动时将无视物理行为，否则会受到环境中其他物体的影响。<br>
+⑤	勾选CMC和CRC，物体运动时会检测碰撞，否则无视碰撞（穿模）。
+
+</td>
+    </tr> <tr>
+        <td>255</td>
+        <td>Copy Component Window<br><font color="FFD701">仅编辑器</font></td>
+        <td>物体组件复制窗口。<br>
+点击Tools——Copy Component Window即可打开物体组件复制窗口，填入source与target物体，点击CACWRR按钮，即可将source物体的组件与连线添加给target物体。（子物体不受影响，如果target有其他组件也不会被删除）
+</td>
+    </tr>
+     <tr>
+        <td>256</td>
+        <td>Disable Lights When Far Away</td>
+        <td>灯光区域。<br>
+该脚本所附加物体需要有一个设为trigger的box collider，当玩家进入该区域中light列表中物体的light组件将会被开启，离开区域则会被关闭。
+</td>
+    </tr>
+     <tr>
+        <td>257</td>
+        <td>Distance Tool<br><font color="FFD701">仅编辑器</font></td>
+        <td>测距工具。<br>
+点击GameObject——The 3D Ninja——Create Distance Tool即可在场景中创建一个测距工具，显示两点间的距离。Gizmo radius可调节端点球体标记半径大小，tool color可调节标记颜色，勾选SS/P可显示这段长度上包含的像素数，即显示：距离×PPU。
+</td>
+    </tr> 
+    <tr>
+        <td>258</td>
+        <td>Global Variables</td>
+        <td>全局变量。<br>
+创建一个可全局读写的数值变量。<br>
+①	创建一个数据源：在Project窗口中右键Create——ScriptableObject——GlobalVariables，调整Variables的size可以修改变量的个数，label和value为该变量的名称与数值。<br>
+②	写入数值：添加Global Set Value脚本，global Variables指定数据源，GVL下拉列表选择具体的变量，当read only≠1时，input的值将保存至GVL选择的变量中；当read only＝1或在数据源中，该变量勾选了HWP时，input将无法写入数值，该变量为只读状态。<br>
+③	读取数值：添加Global Get Value脚本，该脚本的输出将始终为global Variables数据源中GVL所选的变量的数值。
+
+</td>
+    </tr> 
+    <tr>
+        <td>259</td>
+        <td>Mouse Look</td>
+        <td>鼠标控制物体旋转。<br>
+添加该脚本可使该脚本所附加物体跟随鼠标旋转，vertical sensitivity和horizontal sensitivity可调整垂直和水平灵敏度。
+</td>
+    </tr> 
+    <tr>
+        <td>260</td>
+        <td>Trigger Volume Colliders Counter</td>
+        <td>计数触发区域。<br>
+每有一个CTCF物体或additional colliders列表中的物体在触发区域中，输出数值＋1。（其余请参考182）
+</td>
+    </tr> 
+<tr>
+        <td>261</td>
+        <td>Trigger Volume Multiple Output<br><font color="red">IReset接口</font></td>
+        <td>多输出触发区域。<br>
+CTCF物体、additional colliders element 0、1、2分别对应output 1、2、3、4，当物体进入触发区域时，对应的output会输出OVI值。CTCF物体、additional colliders element 0、1、2中存在相同物体时，优先输出较小号。当存在additional colliders element 3或更大序号element时，该脚本不会检测这些物体。（其余请参考182）
+</td>
+    </tr> 
+
 </table>
 
 标记说明：<br>
