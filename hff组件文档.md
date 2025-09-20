@@ -1289,9 +1289,9 @@ Label为自定义标签名。</td>
     </tr>
     <tr>
         <td>202</td>
-        <td>~~Distance Tool~~<br><font color="FFD701">仅编辑器</font><br>（见262）</td>
-        <td>~~距离工具。【目前为线段绘制工具】~~<br>
-~~在Scene面板中绘制一条颜色为Line Color从Start Point到End Point的线段，端点球半径为Gizmo Radius。~~</td>
+        <td><del>Distance Tool</del><br><font color="FFD701">仅编辑器</font><br>（见262）</td>
+        <td><del>距离工具。【目前为线段绘制工具】</del><br>
+<del>在Scene面板中绘制一条颜色为Line Color从Start Point到End Point的线段，端点球半径为Gizmo Radius。</del></td>
     </tr>
     <tr>
         <td>203</td>
@@ -1649,9 +1649,9 @@ current checkpoint输出最后一个存档点的number。
     </tr>
     <tr>
         <td>251</td>
-        <td>~~Water Color~~</td>
-        <td>~~水体颜色。~~<font color="red">（Backyard更新后被移除）</font><br>
-~~修改人物在水中看到的颜色（必须Lighting中开启Fog）。~~
+        <td><del>Water Color</del></td>
+        <td><del>水体颜色。</del><font color="red">（Backyard更新后被移除）</font><br>
+<del>修改人物在水中看到的颜色（必须Lighting中开启Fog）。</del>
 </td>
     </tr>
   <tr>
