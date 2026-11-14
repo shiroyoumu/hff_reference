@@ -911,7 +911,7 @@ body将在min value到max value之间移动，速度为max speed ×  power × in
         <td>140</td>
         <td>Net Body</td>
         <td>网络物体同步。<br>
-同步多人游戏下该物体的Transform信息，以及物体重生。物体世界坐标Y值小于despawn height时，物体将会消失，此时，如果勾选respawn，则物体将会重生，重生高度为物体初始位置Y值 + respawn height，同时触发Respawn Event()事件；带有该脚本的物体进行网络同步时会受到一个范围限制（默认值500m），当该物体移动距离超出该限制时，物体位置将不会被同步（卡模），可通过修改PRO的值来调整。</td>
+同步多人游戏下该物体的Transform信息，以及物体重生。物体世界坐标Y值小于despawn height时，物体将会消失，此时，如果勾选respawn，则物体将会重生，重生高度为物体初始位置Y值 + respawn height，同时触发Respawn Event()事件；带有该脚本的物体进行网络同步时会受到一个范围限制（默认值500m），当该物体移动距离超出该限制时，物体位置将不会被同步（卡模），可通过修改PRO的值来调整。可通过Net Body Reset Override脚本来控制重生后冻结的帧数，取值[-1,4]，对应冻结帧数为0到5帧，默认为2帧。</td>
     </tr>
     <tr>
         <td>141</td>
@@ -924,10 +924,10 @@ body将在min value到max value之间移动，速度为max speed ×  power × in
         <td>Net Scene</td>
         <td>网络场景。<br>
 将需要网络同步的物体分组。每个Net Scene可容纳1193B（9544b）网络数据，<br>
-每增加一个Net Signal组件将占用11b（8b = 1B）空间；<br>
-每增加一个Net Body组件将占用86b；<br>
-每增加一个Conveyor占用10b；<br>
-每增加一个Item Mixer占用11b；<br>
+每增加一个Net Signal组件约占用11b（8b = 1B）空间；<br>
+每增加一个Net Body组件约占用86b；<br>
+每增加一个Conveyor约占用10b；<br>
+每增加一个Item Mixer约占用11b；<br>
 （以上数据可能不准确，仅供参考）。超出可能导致多人联机异常。每个Level中默认自带一个（id为0），当Net Body和Net Signal过多时需要自行添加Net Scene，id不重复即可，同时，包含在子物体中的Net Body和Net Signal，其字节数只计算在子物体的Net Scene中，不重复计算于父物体Net Scene中（类似于节点图的隔离方式）。</td>
     </tr>
     <tr>
@@ -1742,7 +1742,51 @@ roll、pitch、yaw分别控制body绕Z轴旋转的正反、绕X轴旋转的正�
 CTCF物体、additional colliders element 0、1、2分别对应output 1、2、3、4，当物体进入触发区域时，对应的output会输出OVI值。CTCF物体、additional colliders element 0、1、2中存在相同物体时，优先输出较小号。当存在additional colliders element 3或更大序号element时，该脚本不会检测这些物体。（其余请参考182）
 </td>
     </tr> 
+<tr>
+        <td colspan="3" bgColor="#4B90E2"><font color="#FFFFFF">Vikings更新后新增</font></td>
+    </tr> 
+<tr>
+        <td>262</td>
+        <td>Mesh Shatter<br></td>
+        <td>破碎物体。将一个物体变成可破碎物体。<br>
+shard prefab为碎片预制件（可附带组件和个别脚本）（碎片默认形状为以原物体表面三角面为底的棱柱），勾选add physics为碎片添加刚体，CDM为碎片刚体碰撞检测模式，max shards为最大碎片数量，total mass为碎片的总质量，inside objects为可破碎物体中的内容物，可破碎物体破碎时inside objects物体将掉出来；inward offset为碎片厚度，IAP为碎片一端收缩比例（将棱柱变为棱台）。<br>
+      （原物体为Sphere，按表面三角面生成了max shards个碎片，碎片的径向厚度为inward offset，内侧收缩比例为IAP）      
+</td>
+    </tr> 
+    <tr>
+        <td>263</td>
+        <td>Signal To Shatter<br></td>
+        <td>信号破碎。<br>
+当input有信号时，OTS物体将破碎。
+</td>
+    </tr> 
+ <tr>
+        <td>264</td>
+        <td>Signal Shattered<br></td>
+        <td>破碎检测器。<br>
+SOTT物体破碎时输出1。
+</td>
+    </tr> 
+    <tr>
+        <td>265</td>
+        <td>Trigger Volume Players Detector<br></td>
+        <td>玩家排名识别器。<br>
+多个玩家依次进入该触发区域时，会按先后顺序在MTO的text物体上显示玩家昵称。勾选APN将在玩家昵称前添加序号。勾选UTMPC将用text mesh pro物体代替text物体显示文字。在ATO列表中增加多个text物体，将让玩家昵称分布在多个text物体上，第一个进入的玩家昵称显示在MTO上，第二个进入的玩家昵称显示在ATO的element 0上，第三个进入的玩家昵称显示在ATO的element 1上…以此类推。MPC为最多检测人数，超过该数值的玩家昵称将不再显示。Place x id口将在对应排名玩家进入后输出信号。
+</td>
+    </tr> 
+     <tr>
+        <td>266</td>
+        <td>Force Rigidbody Awake<br></td>
+        <td>保持刚体唤醒。<br>
+挂载该脚本的刚体保持唤醒。
+</td>
+    </tr> 
 
+
+
+
+
+    
 </table>
 
 标记说明：<br>
