@@ -1750,7 +1750,7 @@ CTCF物体、additional colliders element 0、1、2分别对应output 1、2、3�
         <td>Mesh Shatter<br></td>
         <td>破碎物体。将一个物体变成可破碎物体。<br>
 shard prefab为碎片预制件（可附带组件和个别脚本）（碎片默认形状为以原物体表面三角面为底的棱柱），勾选add physics为碎片添加刚体，CDM为碎片刚体碰撞检测模式，max shards为最大碎片数量，total mass为碎片的总质量，inside objects为可破碎物体中的内容物，可破碎物体破碎时inside objects物体将掉出来；inward offset为碎片厚度，IAP为碎片一端收缩比例（将棱柱变为棱台）。<br>
-            <img src="imgs/word-image-4.png">  <img src="imgs/word-image-5.png">
+            <img src="imgs/word-image-4.png">    <img src="imgs/word-image-5.png"> <br>
       （原物体为Sphere，按表面三角面生成了max shards个碎片，碎片的径向厚度为inward offset，内侧收缩比例为IAP）      
 </td>
     </tr> 
